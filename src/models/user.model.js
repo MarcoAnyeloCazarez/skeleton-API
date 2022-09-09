@@ -1,18 +1,3 @@
-/*
-    "id": "ed025bbb-5fbe-4ddf-9670-e43ce9d80c52",
-    "first_name": "Anayelo",
-    "last_name": "Cazarez",
-    "email": "anyelocba7@gmail.com",
-    "password": "$2b$10$J8MM4kUcqvaSIxoOmUobHeVttKsjhLCgyjDQ3kPNuq9CCc7O/WeP2",
-    "phone": "",
-    "birthday_date": "16/03/1994",
-    "rol": "normal",
-    "profile_image": "",
-    "country": "México",
-    "is_active": true,
-    "verified": false
-*/
-
 const { DataTypes } = require('sequelize')
 //const { validate } = require('uuid')
 const {db} = require('../utils/database')
@@ -26,14 +11,21 @@ const Users = db.define('users', {
         allow: null
     },
 
-    first_name: {
+    firstName: {     //este nombre lo reconoceremos solo para uso de JS
         alloNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        field: 'first_name'      //Con este nombre se guardará en la base de datos
     },
 
-    last_name: {
+    lastName: {
         alloNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        field: 'last_name'
+    },
+
+    gender: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
 
     email: {
@@ -62,22 +54,31 @@ const Users = db.define('users', {
         }
     },
 
-    birthday_date: {
+    birthdayDate: {
         alloNull: false,
-        type: DataTypes.DATEONLY
+        type: DataTypes.DATEONLY,
+        field: 'birthday_date'
     },
 
-    role: {
-        alloNull: false,
-        type: DataTypes.STRING,
-        defaultValue: 'normal'
+    dni: {
+        type: DataTypes.STRING
     },
 
-    profile_image: {
+    /*role: {
+        alloNull: false,
+        type: DataTypes.UUID
+    },*/
+
+    address: {
+        type: DataTypes.STRING
+    },
+
+    profileImage: {
         type: DataTypes.STRING,
         validate: {
             isUrl: true
-        }
+        },
+        field: 'profile_image'
     },
 
     country: {
@@ -95,6 +96,18 @@ const Users = db.define('users', {
         alloNull: false,
         type: DataTypes.BOOLEAN,
         defaultVlue: false
+    },
+
+    createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'created_at'
+    },
+
+    updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'updated_at'
     }
 })
 

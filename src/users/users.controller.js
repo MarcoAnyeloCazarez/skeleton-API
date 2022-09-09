@@ -79,16 +79,16 @@ const createUser = async (data) => {
 
     const newUser = await Users.create({
         id: uuid.v4(),            
-        first_name: data.first_name,     
-        last_name: data.last_name,     
+        firstName: data.first_name,     
+        lastName: data.last_name,     
         email: data.email,          
         password: hashPassword(data.password),       
         phone: data.phone,          
-        birthday_date: data.birthday_date,  
-        role: 'normal',            
-        profile_image: data.profile_image,
-        country: data.country,        
-        is_active: true,    
+        birthdayDate: data.birthday_date,  
+        role: uuid,            
+        profileImage: data.profile_image,
+        country: data.country,
+        status: 'active', 
         verified: false
     })
     return newUser

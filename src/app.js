@@ -4,8 +4,9 @@ const passport = require('passport')
 //const multer = require('multer')
 const path = require('path')   //esta libreria permite identificar una ruta o auto generarla
 require('./middlewere/auth.middleware')(passport)     //esta manera se usa para proeger una ruta, importar passport y a la ruta psarle passport
+const initModels = require('./models/initModels')
 
-//* Archivos derutas
+//* Archivos de rutas
 const userRouter = require('./users/users.router').router
 const authRouter = require('./auth/auth.router').router
 
@@ -13,6 +14,7 @@ const {db} = require('./utils/database')
 
 //* Configuraciones iniciales
 const app = express()
+initModels();   // ejecuta los modelos que tengo en mi archivo initModels
 
 
 //! ejemplo para uso de la libreria multer (almacenamiento de archivos)
